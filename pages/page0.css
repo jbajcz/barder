@@ -45,6 +45,12 @@ section {
     text-align: center;
 }
 
+.inventory-item img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
 .trader img {
     width: 100px;
     height: 100px;
