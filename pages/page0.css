@@ -50,16 +50,18 @@ section {
 
 .inventory-item img {
     border-radius: 10px;
-    width: 100px;
-    height: 100px;
+    width: 175px;
+    height: 175px;
     margin-bottom: 10px;
+    border: 2px solid #ccc;
 }
 
 .trader img {
     border-radius: 10px;
-    width: 100px;
-    height: 100px;
+    width: 175px;
+    height: 175px;
     margin-bottom: 10px;
+    border: 2px solid #ccc;
 }
 
 .trader-item {
@@ -68,6 +70,8 @@ section {
 
 .trader-item img {
     border-radius: 10px;
+    width: 150px;
+    height: 150px;
 }
 
 h2 {
