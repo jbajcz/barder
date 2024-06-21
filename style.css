@@ -6,7 +6,7 @@ body {
 
 header {
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 50px;
     text-align: center;
 }
 
@@ -22,19 +22,34 @@ section {
     margin-bottom: 20px;
 }
 
-.inventory,
+.inventory {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
 .traders {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
 }
 
-.item,
+.inventory-item,
 .trader {
     border: 1px solid #ccc;
     padding: 10px;
-    width: 45%;
+    width: calc(20% - 20px);  /* Adjust spacing based on border width */
     box-sizing: border-box;
+    text-align: center;
+}
+
+.trader img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
 }
 
 .trader-item {
@@ -43,9 +58,9 @@ section {
 
 h2 {
     margin-bottom: 10px;
+    text-align: center;
 }
 
-h3,
-p {
+h3,p {
     margin-bottom: 5px;
 }
