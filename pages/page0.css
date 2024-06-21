@@ -1,17 +1,18 @@
 body {
+    background-color: #7F8C8D;
     font-family: sans-serif;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #f0f0f0;
-    padding: 15px;
+    background-color: #f0f0f028;
+    padding: 5px;
     text-align: center;
 }
 
 h1 {
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 main {
@@ -38,7 +39,9 @@ section {
 
 .inventory-item,
 .trader {
-    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #B2BABB;
+    border: 3px solid #ccc;
     padding: 10px;
     width: calc(20% - 20px);  /* Adjust spacing based on border width */
     box-sizing: border-box;
@@ -46,12 +49,14 @@ section {
 }
 
 .inventory-item img {
+    border-radius: 10px;
     width: 100px;
     height: 100px;
     margin-bottom: 10px;
 }
 
 .trader img {
+    border-radius: 10px;
     width: 100px;
     height: 100px;
     margin-bottom: 10px;
@@ -59,6 +64,10 @@ section {
 
 .trader-item {
     margin-top: 10px;
+}
+
+.trader-item img {
+    border-radius: 10px;
 }
 
 h2 {
