@@ -1,0 +1,51 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+.inventory,
+.traders {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.item,
+.trader {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+.trader-item {
+    margin-top: 10px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+h3,
+p {
+    margin-bottom: 5px;
+}
