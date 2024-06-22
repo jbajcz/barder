@@ -16,7 +16,9 @@ h1 {
 }
 
 main {
-    padding: 20px;
+    /* padding: 15px; */
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 section {
@@ -37,7 +39,15 @@ section {
     gap: 20px;
 }
 
-.inventory-item,
+.inventory-item {
+    border-radius: 20px;
+    background-color: #B2BABB;
+    border: 3px solid #ccc;
+    padding: 10px;
+    width: 100;
+    box-sizing: border-box;
+    text-align: center;
+}
 .trader {
     border-radius: 20px;
     background-color: #B2BABB;
