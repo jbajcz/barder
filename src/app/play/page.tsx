@@ -1,3 +1,12 @@
+"use client";
+import UserForm from "@/components/UserForm";
+import Header from "@/components/Header";
+
 export default function Play() {
-  return <h1>Hello, Play Page!</h1>;
+  return (
+    <div>
+      <Header />
+      <UserForm />
+    </div>
+  );
 }

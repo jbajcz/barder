@@ -1,34 +1,12 @@
 import Link from "next/link";
 import { FaPlay, FaRotate } from "react-icons/fa6";
+import Image from "next/image";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-[#1a1a1a] text-white">
-      <header className="px-4 lg:px-6 h-14 flex items-center bg-[#2b2b2b]">
-        <Link
-          href="#"
-          className="flex items-center justify-center"
-          prefetch={false}
-        >
-          <FaRotate color="#8b5cf6" fontSize="2em" />
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link
-            href="/about"
-            className="text-sm font-medium hover:underline underline-offset-4 text-white"
-            prefetch={false}
-          >
-            How to Play
-          </Link>
-          <Link
-            href="#"
-            className="text-sm font-medium hover:underline underline-offset-4 text-white"
-            prefetch={false}
-          >
-            Leaderboard
-          </Link>
-        </nav>
-      </header>
+      <Header />
       <main className="flex-1">
         <section className="w-full pt-12 md:pt-24 lg:pt-32 border-y border-[#333]">
           <div className="px-4 md:px-6 space-y-10 xl:space-y-16">
@@ -55,9 +33,9 @@ export default function Home() {
                 </div>
               </div>
               <img
-                src="/placeholder.svg"
-                width="550"
-                height="550"
+                src="https://img.freepik.com/premium-vector/png-files-transparent-vector-background-png-background_302321-1276.jpg?w=400"
+                width="500"
+                height="500"
                 alt="Hero"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-bottom sm:w-full lg:order-last lg:aspect-square"
               />
