@@ -1,10 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import useSharedGameStatus from "@/app/hook/useGameStatus";
+import useSharedItemStatus from "@/app/hook/useItemStatus";
 
 const UserForm = () => {
+  const [data, setData] = useState([]);
+  const { gameStatus, setGameStatus } = useSharedGameStatus();
+  const { itemStatus, setItemStatus } = useSharedItemStatus();
   const [formData, setFormData] = useState({
     name: "",
     item: "",
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:5000/starting_items"
+        );
+        console.log(response.data["starting_items"]);
+        setData(response.data["starting_items"]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -14,10 +36,13 @@ const UserForm = () => {
     });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log("Form data:", formData);
-    // Handle form submission, e.g., send data to an API
+    if (formData.name && formData.item) {
+      setGameStatus("trader-selection");
+      setItemStatus(formData.item);
+    }
   };
 
   return (
@@ -54,24 +79,25 @@ const UserForm = () => {
         </div>
         <div>
           <label
-            htmlFor="category"
+            htmlFor="item"
             className="block text-sm font-medium text-[#e0e0e0]"
           >
             Item
           </label>
           <select
-            id="category"
-            name="category"
+            id="item"
+            name="item"
             value={formData.item}
             onChange={handleChange}
             className="mt-1 block w-full px-3 py-2 border border-[#8b5cf6] rounded-md shadow-sm bg-[#0f0f1a] text-[#e0e0e0] focus:outline-none sm:text-sm"
             required
           >
             <option value="">Select a starting item</option>
-            <option value="">Item 1</option>
-            <option value="">Item 2</option>
-            <option value="">Item 3</option>
-            <option value="">Item 4</option>
+            {data?.map((item) => (
+              <option key={item} value={item}>
+                {item} ($10,000)
+              </option>
+            ))}
           </select>
         </div>
         <div>
