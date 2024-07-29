@@ -1,12 +1,21 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { startUser } from "./userMessage";
 import useSharedGameStatus from "@/app/hook/useGameStatus";
 import useSharedItemStatus from "@/app/hook/useItemStatus";
+import useSharedItemPriceStatus from "@/app/hook/useItemPriceStatus";
+import useUserNameStatus from "@/app/hook/useUserName";
+import { checkUsername } from './checkName';
+
 
 const UserForm = () => {
   const [data, setData] = useState([]);
   const { gameStatus, setGameStatus } = useSharedGameStatus();
   const { itemStatus, setItemStatus } = useSharedItemStatus();
+  const { itemPriceStatus, setItemPriceStatus } = useSharedItemPriceStatus();
+  const { userNameStatus, setUserNameStatus } = useUserNameStatus();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [ check , setCheck] = useState<string>("");
   const [formData, setFormData] = useState({
     name: "",
     item: "",
@@ -39,19 +48,42 @@ const UserForm = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log("Form data:", formData);
-    if (formData.name && formData.item) {
-      setGameStatus("trader-selection");
-      setItemStatus(formData.item);
+
+    try {
+      const response = await checkUsername(formData.name);
+      setCheck(response.inappropriate)
+      if (response.inappropriate === 'yes') {
+        setErrorMessage("The name you entered is not allowed. Please choose another name.")
+        return;
+      }
+
+      if (formData.name && formData.item) {
+        setGameStatus("trader-selection");
+        formData.name = formData.name.charAt(0).toUpperCase()+formData.name.slice(1);
+        setUserNameStatus(formData.name);
+        formData.item = formData.item.charAt(0).toUpperCase()+formData.item.slice(1);
+        setItemStatus(formData.item);
+        setItemPriceStatus(10000);
+  
+        startUser(formData.name, formData.item, itemPriceStatus)
+        setErrorMessage(null);
+  
+      }
+    } catch (error) {
+      console.error('Error checking name', error);
+      setErrorMessage("An error occurred while checking the name. Please try agian.");
     }
+
+    
   };
 
   return (
-    <div className="mx-auto max-w-md w-full mt-32">
+    <div className="flex flex-col items-center justify-center h-screen bg-black">
       <div className="mb-4 items-center text-center">
-        <h2 className="text-3xl font-semibold items-center">
+        <h2 className="text-3xl font-semibold items-center text-purple-600">
           Let&apos;s Barder!
         </h2>
-        <p className="text-sm text-gray-600 mb-4">
+        <p className="text-sm text-gray-600 mb-4 text-white">
           Enter your name and choose your starting gear
         </p>
       </div>
@@ -63,7 +95,7 @@ const UserForm = () => {
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-[#e0e0e0]"
+            className="block text-sm font-medium text-white"
           >
             Name
           </label>
@@ -76,11 +108,16 @@ const UserForm = () => {
             className="mt-1 block w-full px-3 py-2 border border-[#8b5cf6] rounded-md shadow-sm bg-[#0f0f1a] text-[#e0e0e0] focus:outline-none sm:text-sm"
             required
           />
+          {errorMessage && (
+            <p className="mt-2 text-sm text-red-600">
+              {errorMessage}
+            </p>
+          )}
         </div>
         <div>
           <label
             htmlFor="item"
-            className="block text-sm font-medium text-[#e0e0e0]"
+            className="block text-sm font-medium text-white"
           >
             Item
           </label>

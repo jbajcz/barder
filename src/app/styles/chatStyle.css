@@ -1,0 +1,92 @@
+/* ChatSession.css */
+.level-display {
+    font-size: 1.5rem; /* Adjust as needed */
+    margin-bottom: 4rem; /* Space below the level display */
+    
+}
+
+.chat-container {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-info {
+    position: absolute;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-left {
+    top: 100px;
+    left: 80px;
+}
+
+.top-right {
+    top: 100px;
+    right: 80px;
+}
+
+.trader-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    
+}
+
+.trader-image img {
+    max-width: 220px;
+    border-radius: 50%;
+    height: 180px;
+}
+
+.chat-form {
+    display: auto;
+    flex-direction: column;
+    
+    margin-bottom: 245px;
+}
+
+.chat-input {
+    padding: 10px;
+    width: 310px;
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    
+}
+
+.chat-submit {
+    padding: 10px;
+    width: 100px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-submit:hover {
+    background-color: rgb(2, 90, 2);
+}
+
+.conversation {
+    max-height: 400px;
+    overflow-y: hidden;
+    margin-bottom: 10px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+}
+
+.chat-container h1,
+.chat-container h2 {
+    font-size: 1.5rem;
+}
