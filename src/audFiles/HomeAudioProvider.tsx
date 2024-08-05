@@ -35,6 +35,7 @@ const HomeAudioProvider: React.FC<Props> = ({ children }) => {
     useEffect(() => {
         const currentTrack = playlist[0];
         const newAudio = new Audio(currentTrack.url);
+        newAudio.loop = true;
         setAudio(newAudio);
         newAudio.play().catch(error => console.error("Audio play error:", error));
 
