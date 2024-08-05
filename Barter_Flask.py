@@ -206,6 +206,32 @@ class User:
         self.name = name
         self.inventory = inventory
         self.value = value
+
+class Leaderboard:
+    def __init__(self):
+        self.leaderboard = []
+
+    def add_score(self, username, money):
+        found = False
+        for entry in self.leaderboard:
+            if entry['username'] == username:
+                entry['money'] = max(entry['money'], money)
+                found = True
+                break
+
+        if not found:
+            self.leaderboard.append({
+                'username': username,
+                'money': money
+            })
+            
+            self.leaderboard = sorted(self.leaderboard, key=lambda x: x['money'], reverse=True)
+    
+    def get_leaderboard(self):
+        return self.leaderboard
+    
+    
+
     
 global level
 level = 1
@@ -215,6 +241,8 @@ attempts = max(36 - level, 5)
 
 global user
 user = User()
+
+leaderboard = Leaderboard()
 
 
 
@@ -281,7 +309,9 @@ def user_create():
 @app.route('/generate_traders', methods = ['GET'])
 def generate_traders():
     global traders
+    global level
     global user
+    level = 1
     traders = []
     names = []
     items = []
@@ -339,7 +369,11 @@ def start_trade_session():
                     return jsonify({"message": "Trade successful", "item": new_item, "value": new_value, "level": level, "trader_message": {"role": trader_name, "content": message}, "attempts": attempts, "mood": mood})
                 else:
                     attempts = max(36-level, 5)
-                    level = 1
+                    username = user.name
+                    money = user.value
+
+
+                    leaderboard.add_score(username, money)
                     return jsonify({"message": "Trade failed", "item": new_item, "value": new_value, "level": level, "trader_message": {"role": trader_name, "content": message}, "mood": mood})
         except Exception as e:
             return jsonify({'error': str(e)}), 500 
@@ -391,6 +425,11 @@ def checkUsername():
         return jsonify({"inappropriate": "yes"})
     
     return jsonify({"inappropriate": "no"})
+
+@app.route('/leaderboard', methods=['GET'])
+def get_leaderboard():
+    
+    return jsonify(leaderboard.get_leaderboard()), 200
 
     
 

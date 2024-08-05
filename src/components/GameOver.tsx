@@ -7,6 +7,7 @@ import useSharedItemPriceStatus from "@/app/hook/useItemPriceStatus";
 import useUserNameStatus from "@/app/hook/useUserName";
 import useSharedLevelStatus from "@/app/hook/useLevelStatus";
 import { useRouter } from "next/navigation";
+import useLeaderboardPosition from "@/app/hook/useLeaderboardPosition";
 
 
 const GameOver = () => {
@@ -15,6 +16,7 @@ const GameOver = () => {
     const { itemPriceStatus, setItemPriceStatus } = useSharedItemPriceStatus();
     const { userNameStatus } = useUserNameStatus();
     const { levelStatus, setLevelStatus} = useSharedLevelStatus();
+    const position = useLeaderboardPosition(userNameStatus);
     const router = useRouter();
 
     const [userInput, setUserInput] = useState<string>("");
@@ -37,6 +39,13 @@ const GameOver = () => {
                     YOU FAILED
                 </h1>
             </div>
+            {position !== null && (
+                <div className="text-center mb-4">
+                    <p className="text-2x1 text-white">
+                        Your leaderboard position: {position}
+                    </p>
+                </div>
+            )}
             <div className="text-center mb-4">
                 <p className="text-2x1 text-white">
                     Do you want to try again?

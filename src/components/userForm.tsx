@@ -4,7 +4,7 @@ import { startUser } from "./userMessage";
 import useSharedGameStatus from "@/app/hook/useGameStatus";
 import useSharedItemStatus from "@/app/hook/useItemStatus";
 import useSharedItemPriceStatus from "@/app/hook/useItemPriceStatus";
-import useUserNameStatus from "@/app/hook/useUserName";
+import useSharedUserNameStatus from "@/app/hook/useUserName";
 import { checkUsername } from './checkName';
 
 
@@ -13,7 +13,7 @@ const UserForm = () => {
   const { gameStatus, setGameStatus } = useSharedGameStatus();
   const { itemStatus, setItemStatus } = useSharedItemStatus();
   const { itemPriceStatus, setItemPriceStatus } = useSharedItemPriceStatus();
-  const { userNameStatus, setUserNameStatus } = useUserNameStatus();
+  const { userNameStatus, setUserNameStatus } = useSharedUserNameStatus();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [ check , setCheck] = useState<string>("");
   const [formData, setFormData] = useState({

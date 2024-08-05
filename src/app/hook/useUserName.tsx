@@ -9,5 +9,5 @@ const useUserNameStatus = () => {
   };
 };
 
-const useSharedTraderNameStatus = () => useBetween(useUserNameStatus);
-export default useSharedTraderNameStatus;
+const useSharedUserNameStatus = () => useBetween(useUserNameStatus);
+export default useSharedUserNameStatus;

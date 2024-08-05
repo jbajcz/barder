@@ -21,7 +21,7 @@ const Header = () => {
           How to Play
         </Link>
         <Link
-          href="#"
+          href="/leaderboard"
           className="text-sm font-medium hover:underline underline-offset-4 text-white"
           prefetch={false}
         >
