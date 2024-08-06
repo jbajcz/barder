@@ -40,7 +40,6 @@ const PlayAudioProvider: React.FC<Props> = ({ children, playHomeSong }) => {
     const { currentMood } = useCurrentMood();
     const { success } = useSharedSuccessStatus();
     const { traderStatus } = useSharedTraderNameStatus();
-    const [check, setCheck ] = useState<boolean>(false);
     const [playlist, setPlaylist] = useState([
         { url: 'http://localhost:5000/static/audio/DanielJosephWhitChronicle.mp3', nickname: 'Daniel Joseph White - Chronicle' },
         { url: 'http://localhost:5000/static/audio/OmriSmadarMuftakDansi.mp3', nickname: 'Omri Smadar - Muftak Dansi' },
@@ -55,16 +54,15 @@ const PlayAudioProvider: React.FC<Props> = ({ children, playHomeSong }) => {
                 { url: 'http://localhost:5000/static/audio/MiguelJohnsonUnexploredMoon.mp3', nickname: 'Miguel Johnson - Unexplored Moon'},
                 { url: 'http://localhost:5000/static/audio/TorontoCanadaKiilstofte.mp3', nickname: 'Kiilstofte - Toronto Canada'},
             ]);
-            setCheck(true);
             
         } else {
-            if (check) {
-                setPlaylist([
-                    { url: 'http://localhost:5000/static/audio/DanielJosephWhitChronicle.mp3', nickname: 'Daniel Joseph White - Chronicle' },
-                    { url: 'http://localhost:5000/static/audio/OmriSmadarMuftakDansi.mp3', nickname: 'Omri Smadar - Muftak Dansi' },
-                    { url: 'http://localhost:5000/static/audio/RexBannerVibewithMeNoBackingVocals.mp3', nickname: 'Rex Banner - Vibe with Me' },
-                ]);
-            }      
+            
+            setPlaylist([
+                { url: 'http://localhost:5000/static/audio/DanielJosephWhitChronicle.mp3', nickname: 'Daniel Joseph White - Chronicle' },
+                { url: 'http://localhost:5000/static/audio/OmriSmadarMuftakDansi.mp3', nickname: 'Omri Smadar - Muftak Dansi' },
+                { url: 'http://localhost:5000/static/audio/RexBannerVibewithMeNoBackingVocals.mp3', nickname: 'Rex Banner - Vibe with Me' },
+            ]);
+           
         }
     }, [currentMood]);
 
