@@ -64,6 +64,14 @@ const UserForm = () => {
         formData.item = formData.item.charAt(0).toUpperCase()+formData.item.slice(1);
         setItemStatus(formData.item);
         setItemPriceStatus(10000);
+
+        const userData = {
+          user_name: formData.name,
+          user_item: formData.item,
+          user_value: 10000
+        };
+
+        await axios.post('http://127.0.0.1:5000/user_create', userData);
   
         startUser(formData.name, formData.item, itemPriceStatus)
         setErrorMessage(null);

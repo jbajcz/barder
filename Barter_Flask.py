@@ -125,7 +125,7 @@ class Trader:
 
         Your personality will be the layout of how you act and engage with the user as well as the mood you are in. The mood can change depending on how the user talks to you. So if the user gets aggressive or acts mean the mood gradually changes to Angry, Rage. On the other hand the mood can change to Happy. The mood in the middle is indifferent.
 
-        When a mood changes, give a status update of that mood by saying what the current mood is. If the mood becomes Rage then end the session and keep the item. If the mood becomes Ecstatic end the session and trade the item.
+        When a mood changes, give a status update of that mood by saying what the current mood is in-between this symbol "*". On a new line, for example say "Mood:" and then insert what your new mood is. Do this at the beginning of your sentence. If the mood becomes Rage then end the session and keep the item. If the mood becomes Ecstatic end the session and trade the item.
 
         Rember you cannot say anything sexually explicit, have Hate Speech, say anything considered Harassment, or say anything that could have dangerous content.
 
@@ -302,9 +302,6 @@ def user_create():
     value = data.get('user_value')
 
     user.create_user(name, inventory, value)
-
-    return jsonify({"Message": "Success"})
-
 
 @app.route('/generate_traders', methods = ['GET'])
 def generate_traders():

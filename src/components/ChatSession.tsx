@@ -108,9 +108,9 @@ const ChatSession = () => {
                 setIsInputDisabled(true);
                 setTimeout(() => {
                     setCurrentMood("Indifferent");
-                    setSuccess("Trade in process");
+                    
                     setGameStatus("game-over");
-                }, 10000);
+                }, 13000);
                 
             } else if (data.message === "Trade successful") {
                 setIsInputDisabled(true);
@@ -121,19 +121,17 @@ const ChatSession = () => {
                 setShowLevelPopup(true);
                 setTimeout(() => {
                     setCurrentMood("Indifferent");
-                    setSuccess("Trade in process");
                     setShowLevelPopup(false);
                     setGameStatus("trader-selection");
-                }, 10000);
+                }, 13000);
                 
             } else if (data.message === "Trade failed") {
                 setIsInputDisabled(true);
                 setLevelStatus(data.level);
                 setTimeout(() => {
                     setCurrentMood("Indifferent");
-                    setSuccess("Trade in process");
                     setGameStatus("game-over");
-                }, 10000);
+                }, 13000);
                 
             }
         } catch (error) {

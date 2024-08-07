@@ -4,6 +4,8 @@ import useSharedGameStatus from "@/app/hook/useGameStatus";
 import useSharedTraderNameStatus from "@/app/hook/useTraderStatus";
 import useSharedLevelStatus from "@/app/hook/useLevelStatus";
 import useCurrentMood from "@/app/hook/useCurrentMood";
+import useSharedSuccessStatus from "@/app/hook/useSuccessStatus";
+
 
 
 interface Trader {
@@ -23,6 +25,8 @@ const TraderSelection = () => {
   const [formData, setFormData] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const {currentMood , setCurrentMood} = useCurrentMood();
+  const { success , setSuccess } = useSharedSuccessStatus();
+
 
  
 
@@ -45,6 +49,7 @@ const TraderSelection = () => {
   };
 
   const handleSubmit = async (e: any) => {
+    setSuccess("Trade processing")
     e.preventDefault();
     console.log("Trader Name:", formData);
     const trader = traders.find(trader => trader.name.toLowerCase() === formData.toLowerCase());
