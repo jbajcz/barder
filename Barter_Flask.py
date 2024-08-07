@@ -50,14 +50,6 @@ class Trader:
                               "Energetic","Imaginative","Impulsive","Lazy","Mischievous","Optimistic","Pessimistic","Playful","Protective",
                               "Resourceful","Sensitive","Shy","Wise","Fearless"]
         self.moods = ["Happy", "Indifferent", "Angry"]
-        # self.inventories = {"minivan.jpg": "minivan",
-        #                     "pc.jpg": "pc",
-        #                     "ring.jpg": "ring",
-        #                     "safe.jpg": "safe",
-        #                     "camera.jpg": "camera",
-        #                     "fridge.jpg": "fridge",
-        #                     "motorcycle.jpg": "motorcycle"
-        #                    }
 
         self.price_categories = {
             'low': {
@@ -114,7 +106,7 @@ class Trader:
             
         }
 
-        self.inventory_values = list(range(user_value + 5000, user_value + 10000))
+        self.inventory_values = list(range(user_value + 5000, user_value + 15000))
         
         self.user_item = user_item
         self.user_value = user_value
