@@ -115,8 +115,7 @@ const ChatSession = () => {
             } else if (data.message === "Trade successful") {
                 setIsInputDisabled(true);
                 setLevelStatus(data.level);
-                data.item.charAt(0).toUpperCase();
-                setItemStatus(data.item);
+                setItemStatus(data.item.charAt(0).toUpperCase());
                 setItemPriceStatus(data.value);
                 setShowLevelPopup(true);
                 setTimeout(() => {

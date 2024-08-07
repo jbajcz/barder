@@ -50,15 +50,71 @@ class Trader:
                               "Energetic","Imaginative","Impulsive","Lazy","Mischievous","Optimistic","Pessimistic","Playful","Protective",
                               "Resourceful","Sensitive","Shy","Wise","Fearless"]
         self.moods = ["Happy", "Indifferent", "Angry"]
-        self.inventories = {"minivan.jpg": "minivan",
-                            "pc.jpg": "pc",
-                            "ring.jpg": "ring",
-                            "safe.jpg": "safe",
-                            "camera.jpg": "camera",
-                            "fridge.jpg": "fridge",
-                            "motorcycle.jpg": "motorcycle"
-                           }
-        self.inventory_values = list(range(user_value + 5000, user_value + 20000))
+        # self.inventories = {"minivan.jpg": "minivan",
+        #                     "pc.jpg": "pc",
+        #                     "ring.jpg": "ring",
+        #                     "safe.jpg": "safe",
+        #                     "camera.jpg": "camera",
+        #                     "fridge.jpg": "fridge",
+        #                     "motorcycle.jpg": "motorcycle"
+        #                    }
+
+        self.price_categories = {
+            'low': {
+                'range': (10000, 25000),
+                'items': {
+                    "camera.jpg": "camera",
+                    "fridge.jpg": "fridge",
+                    "safe.jpg": "safe",
+                    "table.jpg": "table",
+                    "yoga Mat.jpg": "yoga Mat",
+                    "lamp.jpg": "lamp",
+                    "dresser.jpg": "dresser",
+                    "bicycle.jpg": "bicycle",
+                    "fridge.jpg": "fridge",
+                    "guitar.jpg": "guitar",
+                    "bluetooth Speaker.jpg": "bluetooth Speaker"
+                }
+            },
+            'mid': {
+                'range': (25001, 50000),
+                'items': {
+                    "fridge.jpg": "fridge",
+                    "bicycle.jpg": "bicycle",
+                    "table.jpg": "table",
+                    "drone.jpg": "drone",
+                    "guitar.jpg": "guitar",
+                    "minivan.jpg": "minivan",
+                    "dresser.jpg": "dresser",
+                    "pocket Watch.jpg": "pocket Watch",
+                    "laptop.jpg": "laptop",
+                    "ring.jpg": "ring"
+
+                }
+            },
+            'high': {
+                'range': (50001, 90000),
+                'items': {
+                    "3D Printer.jpg": "3D Printer",
+                    "iphone.jpg": "iphone",
+                    "laptop.jpg": "laptop",
+                    "minivan.jpg": "minivan",
+                    "pc.jpg": "pc",
+                    "motorcycle.jpg": "motorcycle",
+                    "ring.jpg": "ring",
+                    "vR Headset.jpg": "vR Headset"
+                }
+            },
+        }
+        self.unique_items = {
+                "helicopter.jpg": "helicopter",
+                "sports Car.jpg": "sports Car",
+                "yacht.jpg": "yacht",
+                "mona Lisa.jpg": "mona Lisa"
+            
+        }
+
+        self.inventory_values = list(range(user_value + 5000, user_value + 10000))
         
         self.user_item = user_item
         self.user_value = user_value
@@ -66,6 +122,7 @@ class Trader:
         self.level = level
         
         self.current_animal = None
+        self.items = None
         self.current_name = None
         self.current_personality = None
         self.current_mood = None
@@ -80,6 +137,17 @@ class Trader:
         self.conversation = []
         
         self.success_percentage = max(0.1, random.uniform(0.5 - 0.05 * level,0.8 - 0.05 * level))
+
+    def get_item_category(self):
+        for category, details in self.price_categories.items():
+            if details['range'][0] <= self.user_value <= details['range'][1]:
+                return category, details['items']
+        
+        high_items = self.price_categories['high']['items'].copy()
+        unique_item_key = random.choice(list(self.unique_items.keys()))
+        high_items[unique_item_key] = self.unique_items[unique_item_key]
+        return 'special', high_items
+        
         
     
     def generate_character(self):
@@ -98,7 +166,9 @@ class Trader:
             self.current_personality = random.choice(self.personalities)
             
         self.current_mood = random.choice(self.moods)
-        self.current_inventory_item = random.choice(list(self.inventories.keys()))
+
+        category, self.items = self.get_item_category()
+        self.current_inventory_item = random.choice(list(self.items.keys()))
         self.current_inventory_value = random.choice(self.inventory_values)
         
         self.initialize_genai()
@@ -111,7 +181,7 @@ class Trader:
         2. Name: {self.current_name}
         3. Personality: {self.current_personality}
         4. Mood: {self.current_mood}
-        5. Inventory: {self.inventories[self.current_inventory_item]}
+        5. Inventory: {self.items[self.current_inventory_item]}
         6. Value of item in inventory: ${self.current_inventory_value:,}
         7. User item: {self.user_item}
         8. User Value of item: ${self.user_value:,}
@@ -187,7 +257,7 @@ class Trader:
 
         if "finished" in traderMessage.lower():
             if "accept" in traderMessage.lower():
-                return True, self.inventories[self.current_inventory_item], self.current_inventory_value, traderMessage, self.current_mood
+                return True, self.items[self.current_inventory_item], self.current_inventory_value, traderMessage, self.current_mood
             else:
                 return False, self.user_item, self.user_value, traderMessage, self.current_mood
         return None, None, None, traderMessage, self.current_mood
@@ -311,7 +381,7 @@ def generate_traders():
     level = 1
     traders = []
     names = []
-    items = []
+    objects = []
     animal = []
 
     
@@ -320,10 +390,10 @@ def generate_traders():
         
         bot = Trader(user.inventory, user.value, user.name, level)
         bot.generate_character()
-        if bot.current_name not in names and bot.current_inventory_item not in items and bot.current_animal not in animal:
+        if bot.current_name not in names and bot.current_inventory_item not in objects and bot.current_animal not in animal:
             traders.append(bot)
             names.append(bot.current_name)
-            items.append(bot.current_inventory_item)
+            objects.append(bot.current_inventory_item)
             animal.append(bot.current_animal)
         
     
@@ -331,7 +401,7 @@ def generate_traders():
                     "animal": bot.animal_images[bot.current_animal],
                     "personality": bot.current_personality, 
                     "mood": bot.current_mood,
-                    "inventory_item": bot.inventories[bot.current_inventory_item],
+                    "inventory_item": bot.items[bot.current_inventory_item],
                     "inventory_value": bot.current_inventory_value} for bot in traders]
         
     return jsonify({"traders": trader_info})

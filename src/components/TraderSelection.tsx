@@ -105,13 +105,18 @@ const TraderSelection = () => {
       </div>
       <label 
           htmlFor="traderName" 
-          className="text-lg mt-10 text-purple-600">
+          className="text-lg mt-6 text-purple-600">
           Enter the name of the trader you want to trade with:
-        </label>
-
+      </label>
+      {errorMessage && (
+        <p 
+          className="text-red-500 text-sm mt-2">
+            {errorMessage}
+        </p>
+      )}
       <form 
         onSubmit={handleSubmit} 
-        className="flex flex-col space-y-4 p-4 rounded-lg mt-3  mb-36 shadow-md border border-[#8b5cf6]">
+        className="flex flex-col space-y-4 p-4 rounded-lg mt-1 shadow-md border border-[#8b5cf6]">
         <label
             htmlFor="name"
             className="block text-sm font-medium text-white"
@@ -130,12 +135,7 @@ const TraderSelection = () => {
           className="self-start inline-flex items-center px-4 py-2 w-auto border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#19b351] hover:bg-[#8b5cf6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#9a37b8]">
           Submit
           </button>
-          {errorMessage && 
-            <p 
-              className="text-red-500 text-sm mt-2">
-                {errorMessage}
-            </p>
-          }
+          
       </form>
     </div>
   );
