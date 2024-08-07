@@ -39,6 +39,12 @@ const UserForm = () => {
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
+    if (name === "name" && value.length > 12) {
+      setErrorMessage("Name cannot exceed 12 characters.");
+      return;
+    } else {
+      setErrorMessage(null);
+    }
     setFormData({
       ...formData,
       [name]: value,
