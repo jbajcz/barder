@@ -70,7 +70,7 @@ const PlayAudioProvider: React.FC<Props> = ({ children, playHomeSong }) => {
     const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
     const transitionToNextTrack = useCallback(() => {
-        setCurrentTrackIndex(prevIndex => getRandomTrackIndex(playlist.length, prevIndex));
+        setCurrentTrackIndex(0);
     }, [playlist.length]);
 
 

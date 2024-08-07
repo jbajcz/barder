@@ -6,6 +6,7 @@ import styles from './AudioPlayer.module.css';
 const AudioPlayer: React.FC = () => {
     const { audio, playlist, currentTrackIndex, transitionToNextTrack } = useAudio();
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
+    const currentTrack = playlist[currentTrackIndex];
     
     const togglePlayPause = () => {
         if (audio && audio.paused) {
@@ -34,9 +35,16 @@ const AudioPlayer: React.FC = () => {
 
     return (
         <div className="text-center bg-black text-white">
-            <p>
+            {currentTrack ? (
+                <p>
                 Now Playing: {playlist[currentTrackIndex].nickname}
-            </p>
+                </p>
+            ) : (
+                <p>
+                    No track available
+                </p>
+            )}
+            
             <button onClick={togglePlayPause}>
                 {isPlaying ? 'Pause' : 'Play'}
             </button>
