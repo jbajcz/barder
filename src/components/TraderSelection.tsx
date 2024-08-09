@@ -5,6 +5,10 @@ import useSharedTraderNameStatus from "@/app/hook/useTraderStatus";
 import useSharedLevelStatus from "@/app/hook/useLevelStatus";
 import useCurrentMood from "@/app/hook/useCurrentMood";
 import useSharedSuccessStatus from "@/app/hook/useSuccessStatus";
+import useSharedUserNameStatus from "@/app/hook/useUserName";
+import useSharedItemPriceStatus from "@/app/hook/useItemPriceStatus";
+import useSharedItemStatus from "@/app/hook/useItemStatus";
+
 
 
 
@@ -19,7 +23,10 @@ interface Trader {
 
 const TraderSelection = () => {
   const [traders, setTraders] = useState<Trader[]>([]);
+  const { userNameStatus } = useSharedUserNameStatus();
   const { gameStatus, setGameStatus } = useSharedGameStatus();
+  const { itemStatus , setItemStatus} = useSharedItemStatus();
+  const { itemPriceStatus, setItemPriceStatus } = useSharedItemPriceStatus();
   const { traderStatus, setTraderStatus } = useSharedTraderNameStatus();
   const { levelStatus, setLevelStatus} = useSharedLevelStatus();
   const [formData, setFormData] = useState("");
@@ -69,6 +76,11 @@ const TraderSelection = () => {
         <h2>
           Level: {levelStatus}
         </h2>
+      </div>
+      <div className="item-info top-left">
+          <h2>{userNameStatus}</h2>
+          <p>Item: {itemStatus}</p>
+          <p>Price: ${itemPriceStatus.toLocaleString()}</p>
       </div>
       <h1 className="text-2xl font-bold mb-8 text-center text-purple-600">
         Select a Trader

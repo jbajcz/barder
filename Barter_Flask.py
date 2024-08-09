@@ -185,7 +185,7 @@ class Trader:
 
         You can give descriptions on what your character does but describing it in-between this symbol "*" then make sure that the talking part takes place a line below. Make sure that the actions taken correspond to the type of animal you are but also have some human personality traits. Also keep it to 3 to 4 sentences to engage with the user.
 
-        Your personality will be the layout of how you act and engage with the user as well as the mood you are in. The mood can change depending on how the user talks to you. So if the user gets aggressive or acts mean the mood gradually changes to Angry, Rage. On the other hand the mood can change to Happy. The mood in the middle is indifferent.
+        Your personality will be the layout of how you act and engage with the user as well as the mood you are in. The mood can change depending on how the user talks to you. So if the user gets aggressive or acts mean the mood gradually changes to Angry. On the other hand the mood can change to Happy. The mood in the middle is indifferent.
 
         When a mood changes, give a status update of that mood by saying what the current mood is in-between this symbol "*". On a new line, for example say "Mood:" and then insert what your new mood is. Do this at the beginning of your sentence. If the mood becomes Rage then end the session and keep the item. If the mood becomes Ecstatic end the session and trade the item.
 
@@ -370,7 +370,6 @@ def generate_traders():
     global traders
     global level
     global user
-    level = 1
     traders = []
     names = []
     objects = []

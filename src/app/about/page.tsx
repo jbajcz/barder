@@ -8,7 +8,7 @@ export default function About() {
         <p className="mb-16 text-center">
           Welcome to our bartering game! This game is all about trading and making strategic decisions to maximize your profits. Start with an item, negotiate with various traders, and try to work your way up to the best possible deal.
         </p>
-        <p className="mb-16 text-center">
+        <p className="mb-16 text-center ml-2">
           Each trader has their own unique items and prices. You will need to assess their mood and their personality to make the best trade possible. Keep an eye on your attempts and manage your trades wisely to avoid failure.
         </p>
         <p className="mb-16 text-center">

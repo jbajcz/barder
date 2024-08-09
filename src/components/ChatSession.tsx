@@ -5,7 +5,7 @@ import useSharedGameStatus from "@/app/hook/useGameStatus";
 import useSharedTraderNameStatus from "@/app/hook/useTraderStatus";
 import useSharedItemStatus from "@/app/hook/useItemStatus";
 import useSharedItemPriceStatus from "@/app/hook/useItemPriceStatus";
-import useUserNameStatus from "@/app/hook/useUserName";
+import useSharedUserNameStatus from "@/app/hook/useUserName";
 import useCurrentMood from "@/app/hook/useCurrentMood";
 
 import "../app/styles/chatStyle.css";
@@ -23,7 +23,7 @@ const ChatSession = () => {
     const { traderStatus, setTraderStatus } = useSharedTraderNameStatus();
     const { itemStatus , setItemStatus} = useSharedItemStatus();
     const { itemPriceStatus, setItemPriceStatus } = useSharedItemPriceStatus();
-    const { userNameStatus } = useUserNameStatus();
+    const { userNameStatus } = useSharedUserNameStatus();
     const { success , setSuccess } = useSharedSuccessStatus();
 
     const [userInput, setUserInput] = useState<string>("");
@@ -115,7 +115,8 @@ const ChatSession = () => {
             } else if (data.message === "Trade successful") {
                 setIsInputDisabled(true);
                 setLevelStatus(data.level);
-                setItemStatus(data.item.charAt(0).toUpperCase());
+                const capitalizedItem = data.item.charAt(0).toUpperCase()+data.item.slice(1);
+                setItemStatus(capitalizedItem);
                 setItemPriceStatus(data.value);
                 setShowLevelPopup(true);
                 setTimeout(() => {
