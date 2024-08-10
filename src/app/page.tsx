@@ -26,7 +26,7 @@ export default function Home() {
               <div className="grid max-w-[1300px] mx-auto gap-4 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
                 <div>
                   <h1 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem] text-[#8b5cf6]">
-                    Barterville
+                    Barderville
                   </h1>
                   <p className="mx-auto max-w-[700px] text-[#b3b3b3] md:text-xl py-2">
                     Experience the thrill of trading in our unique bartering game

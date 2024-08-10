@@ -432,7 +432,7 @@ def start_trade_session():
 
 
                     leaderboard.add_score(username, money)
-                    return jsonify({"message": "Trade failed", "item": new_item, "value": new_value, "level": level, "trader_message": {"role": trader_name, "content": message}, "mood": mood})
+                    return jsonify({"message": "Trade failed", "item": new_item, "value": new_value, "level": level, "trader_message": {"role": trader_name, "content": message}, "attempts": attempts, "mood": mood})
         except Exception as e:
             return jsonify({'error': str(e)}), 500 
 
