@@ -3,7 +3,7 @@ import axios from "axios";
 import useSharedGameStatus from "@/app/hook/useGameStatus";
 import useSharedTraderNameStatus from "@/app/hook/useTraderStatus";
 import useSharedLevelStatus from "@/app/hook/useLevelStatus";
-import useCurrentMood from "@/app/hook/useCurrentMood";
+import useSharedCurrentMood from "@/app/hook/useCurrentMood";
 import useSharedSuccessStatus from "@/app/hook/useSuccessStatus";
 import useSharedUserNameStatus from "@/app/hook/useUserName";
 import useSharedItemPriceStatus from "@/app/hook/useItemPriceStatus";
@@ -31,7 +31,7 @@ const TraderSelection = () => {
   const { levelStatus, setLevelStatus} = useSharedLevelStatus();
   const [formData, setFormData] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const {currentMood , setCurrentMood} = useCurrentMood();
+  const {currentMood , setCurrentMood} = useSharedCurrentMood();
   const { success , setSuccess } = useSharedSuccessStatus();
 
 

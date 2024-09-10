@@ -3,7 +3,7 @@ import { useBetween } from "use-between";
 
 
 
-const currentMood = () => {
+const useCurrentMood = () => {
     
     const [currentMood, setCurrentMood] = useState<string>("");
     return {
@@ -12,5 +12,5 @@ const currentMood = () => {
   };
 };
 
-const useCurrentMood = () => useBetween(currentMood);
-export default useCurrentMood;
+const useSharedCurrentMood = () => useBetween(useCurrentMood);
+export default useSharedCurrentMood;

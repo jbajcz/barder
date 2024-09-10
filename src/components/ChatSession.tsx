@@ -6,7 +6,7 @@ import useSharedTraderNameStatus from "@/app/hook/useTraderStatus";
 import useSharedItemStatus from "@/app/hook/useItemStatus";
 import useSharedItemPriceStatus from "@/app/hook/useItemPriceStatus";
 import useSharedUserNameStatus from "@/app/hook/useUserName";
-import useCurrentMood from "@/app/hook/useCurrentMood";
+import useSharedCurrentMood from "@/app/hook/useCurrentMood";
 
 import "../app/styles/chatStyle.css";
 import useSharedLevelStatus from "@/app/hook/useLevelStatus";
@@ -34,7 +34,7 @@ const ChatSession = () => {
     const [isInputDisabled, setIsInputDisabled] = useState<boolean>(false);
     const [showLevelPopup, setShowLevelPopup] = useState<boolean>(false);
     const [attempts, setAttempts] = useState<number>(36 - levelStatus)
-    const {currentMood , setCurrentMood} = useCurrentMood();
+    const {currentMood , setCurrentMood} = useSharedCurrentMood();
 
     const conversationRef= useRef<HTMLDivElement>(null);
 
